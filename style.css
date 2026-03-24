@@ -1,10 +1,18 @@
-* { box-sizing: border-box; }
+:root {
+  --brand-color: #8b1e3f;
+  --page-background: #f7f7f8;
+  --text-color: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: Inter, Helvetica, sans-serif;
-  color: #1a1a1a;
-  background: #f7f7f8;
+  color: var(--text-color);
+  background: var(--page-background);
   line-height: 1.6;
 }
 
@@ -14,9 +22,9 @@ body {
 }
 
 .hero {
-  background: #8b1e3f;
+  background: var(--brand-color);
   color: white;
-  padding: 72px 0 56px;
+  padding: 28px 0 28px;
 }
 
 .eyebrow {
@@ -48,16 +56,16 @@ h1 {
 
 .button {
   display: inline-block;
-  padding: 11px 16px;
-  border-radius: 10px;
+  padding: 4px 10px;
+  border-radius: 8px;
   text-decoration: none;
   color: white;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .button.primary {
   background: white;
-  color: #8b1e3f;
+  color: var(--brand-color);
   border-color: white;
 }
 
@@ -66,12 +74,12 @@ h1 {
   margin: 22px 0;
   padding: 26px 28px;
   border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
 }
 
 h2 {
   margin-top: 0;
-  color: #8b1e3f;
+  color: var(--brand-color);
 }
 
 h3 {
