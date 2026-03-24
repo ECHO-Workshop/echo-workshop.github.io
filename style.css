@@ -1,5 +1,5 @@
 :root {
-  --brand-color: #8b1e3f;
+  --accent-color: #8b1e3f;
   --page-background: #f7f7f8;
   --text-color: #1a1a1a;
 }
@@ -22,8 +22,8 @@ body {
 }
 
 .hero {
-  background: var(--brand-color);
-  color: white;
+  background: white;
+  color: var(--text-color);
   padding: 28px 0 28px;
 }
 
@@ -31,7 +31,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.9rem;
-  opacity: 0.9;
+  color: var(--text-color);
+  opacity: 1;
   margin: 0 0 12px;
 }
 
@@ -45,7 +46,8 @@ h1 {
 .subtitle {
   font-size: 1.1rem;
   margin: 0 0 24px;
-  opacity: 0.96;
+  color: var(--text-color);
+  opacity: 1;
 }
 
 .hero-actions {
@@ -65,8 +67,23 @@ h1 {
 
 .button.primary {
   background: white;
-  color: var(--brand-color);
+  color: var(--accent-color);
   border-color: white;
+}
+
+.hero h1 {
+  color: var(--accent-color);
+}
+
+.hero .button {
+  color: var(--accent-color);
+  border-color: rgba(139, 30, 63, 0.35);
+}
+
+.hero .button.primary {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
 }
 
 .card {
@@ -79,7 +96,7 @@ h1 {
 
 h2 {
   margin-top: 0;
-  color: var(--brand-color);
+  color: var(--accent-color);
 }
 
 h3 {
