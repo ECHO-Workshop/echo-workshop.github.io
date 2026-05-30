@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#9c1217" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="ECHO" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="icon" href="assets/icon-192.png" />
+  <title>ECHO Workshop at SC '26</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Per-site host-city backdrop config. Everything else is shared:
+       style.css is kept byte-identical across the IWBDR and ECHO sites. -->
+  <style>
+    :root {
+      --chi-sky-top: #41b6e6;       /* Chicago flag blue */
+      --chi-sky-bg: linear-gradient(to bottom, var(--chi-sky-top), transparent 360px), url("assets/chicago_sky_extrap.png");
+      --chi-sky-repeat: no-repeat, no-repeat;
+      --chi-sky-pos: top, bottom;
+      --chi-sky-size: 100% 100%, 100% 100%;
+      --chi-photo-pos: center top;
+      --chi-h1-color: #0c3a4f;
+      --chi-h1-shadow: none;
+      --chi-eyebrow-color: var(--text-color);
+      --chi-eyebrow-shadow: none;
+      --hero-banner: url("assets/Chicago-banner6.jpg");
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       Background art — one SVG per tab, JS toggles .active
+       ============================================================ -->
+  <div class="echo-art" id="echoArt" aria-hidden="true">
+
+    <!-- Home: concentric echo ripples -->
+    <div class="layer active" data-tab="home">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g-home" cx="92%" cy="12%" r="55%">
+            <stop offset="0%"  stop-color="currentColor" stop-opacity="0.16"/>
+            <stop offset="55%" stop-color="currentColor" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#g-home)"/>
+        <g fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="1520" cy="-80" r="260"  stroke-opacity="0.140"/>
+          <circle cx="1520" cy="-80" r="420"  stroke-opacity="0.128"/>
+          <circle cx="1520" cy="-80" r="580"  stroke-opacity="0.116"/>
+          <circle cx="1520" cy="-80" r="760"  stroke-opacity="0.104"/>
+          <circle cx="1520" cy="-80" r="960"  stroke-opacity="0.092"/>
+          <circle cx="1520" cy="-80" r="1180" stroke-opacity="0.080"/>
+          <circle cx="1520" cy="-80" r="1420" stroke-opacity="0.068"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="-80" cy="1080" r="300" stroke-opacity="0.080"/>
+          <circle cx="-80" cy="1080" r="460" stroke-opacity="0.068"/>
+          <circle cx="-80" cy="1080" r="640" stroke-opacity="0.056"/>
+          <circle cx="-80" cy="1080" r="840" stroke-opacity="0.044"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Call for Papers: paper-stripe lines + sweeping arcs -->
+    <div class="layer" data-tab="cfp">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g-cfp" cx="8%" cy="92%" r="55%">
+            <stop offset="0%"  stop-color="currentColor" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#g-cfp)"/>
+        <g id="cfp-lines" stroke="currentColor" stroke-width="2" stroke-linecap="round"></g>
+        <path d="M -100 720 C 400 540, 1100 540, 1700 320" fill="none" stroke="currentColor" stroke-opacity="0.18" stroke-width="1.5"/>
+        <path d="M -100 880 C 400 720, 1100 720, 1700 520" fill="none" stroke="currentColor" stroke-opacity="0.10" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- Organization: sparse network graph -->
+    <div class="layer" data-tab="organization">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g-org" cx="50%" cy="50%" r="55%">
+            <stop offset="0%"  stop-color="currentColor" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#g-org)"/>
+        <g stroke="currentColor" stroke-opacity="0.16" stroke-width="0.9" fill="none">
+          <line x1="180" y1="200" x2="380" y2="120"/>
+          <line x1="180" y1="200" x2="120" y2="380"/>
+          <line x1="380" y1="120" x2="560" y2="260"/>
+          <line x1="380" y1="120" x2="760" y2="170"/>
+          <line x1="560" y1="260" x2="940" y2="300"/>
+          <line x1="560" y1="260" x2="660" y2="540"/>
+          <line x1="760" y1="170" x2="940" y2="300"/>
+          <line x1="940" y1="300" x2="1180" y2="200"/>
+          <line x1="1180" y1="200" x2="1380" y2="360"/>
+          <line x1="1180" y1="200" x2="900" y2="580"/>
+          <line x1="1380" y1="360" x2="1480" y2="540"/>
+          <line x1="1480" y1="540" x2="1280" y2="700"/>
+          <line x1="1280" y1="700" x2="1020" y2="780"/>
+          <line x1="1020" y1="780" x2="740" y2="820"/>
+          <line x1="1020" y1="780" x2="900" y2="580"/>
+          <line x1="740" y1="820" x2="460" y2="720"/>
+          <line x1="460" y1="720" x2="220" y2="580"/>
+          <line x1="220" y1="580" x2="120" y2="380"/>
+          <line x1="220" y1="580" x2="660" y2="540"/>
+          <line x1="660" y1="540" x2="900" y2="580"/>
+          <line x1="940" y1="300" x2="760" y2="170"/>
+        </g>
+        <g fill="currentColor" fill-opacity="0.22">
+          <circle cx="180"  cy="200" r="5"/>
+          <circle cx="380"  cy="120" r="3"/>
+          <circle cx="560"  cy="260" r="3"/>
+          <circle cx="760"  cy="170" r="3"/>
+          <circle cx="940"  cy="300" r="5"/>
+          <circle cx="1180" cy="200" r="3"/>
+          <circle cx="1380" cy="360" r="3"/>
+          <circle cx="1480" cy="540" r="3"/>
+          <circle cx="1280" cy="700" r="5"/>
+          <circle cx="1020" cy="780" r="3"/>
+          <circle cx="740"  cy="820" r="3"/>
+          <circle cx="460"  cy="720" r="3"/>
+          <circle cx="220"  cy="580" r="5"/>
+          <circle cx="120"  cy="380" r="3"/>
+          <circle cx="660"  cy="540" r="3"/>
+          <circle cx="900"  cy="580" r="3"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-opacity="0.10">
+          <circle cx="560" cy="260" r="40"/>
+          <circle cx="560" cy="260" r="68"/>
+          <circle cx="1020" cy="780" r="40"/>
+          <circle cx="1020" cy="780" r="68"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Invited Talk: quiet halo + TBD dots -->
+    <div class="layer" data-tab="invited">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g-inv" cx="50%" cy="42%" r="45%">
+            <stop offset="0%"  stop-color="currentColor" stop-opacity="0.16"/>
+            <stop offset="55%" stop-color="currentColor" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#g-inv)"/>
+        <g stroke="currentColor" stroke-width="1">
+          <line x1="0" y1="640" x2="1600" y2="640" stroke-opacity="0.10"/>
+          <line x1="0" y1="662" x2="1600" y2="662" stroke-opacity="0.04"/>
+        </g>
+        <g fill="currentColor" fill-opacity="0.18">
+          <circle cx="760" cy="400" r="6"/>
+          <circle cx="800" cy="400" r="6"/>
+          <circle cx="840" cy="400" r="6"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-opacity="0.06">
+          <circle cx="800" cy="400" r="160"/>
+          <circle cx="800" cy="400" r="260"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Chicago: soft overlapping ovals + flowing sine bands (sky/lake) -->
+    <div class="layer" data-tab="chicago">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g-chi-a" cx="22%" cy="28%" r="58%">
+            <stop offset="0%"   stop-color="currentColor" stop-opacity="0.20"/>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g-chi-b" cx="82%" cy="78%" r="55%">
+            <stop offset="0%"   stop-color="currentColor" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#g-chi-a)"/>
+        <rect width="1600" height="1000" fill="url(#g-chi-b)"/>
+        <g fill="currentColor">
+          <ellipse cx="380"  cy="260" rx="420" ry="240" fill-opacity="0.09"/>
+          <ellipse cx="1240" cy="720" rx="460" ry="280" fill-opacity="0.09"/>
+          <ellipse cx="900"  cy="380" rx="280" ry="160" fill-opacity="0.06"/>
+          <ellipse cx="520"  cy="780" rx="240" ry="140" fill-opacity="0.05"/>
+        </g>
+        <g stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round">
+          <path d="M -120 180 C 300 110, 700 250, 1100 222 S 1600 152, 1820 180" stroke-opacity="0.18"/>
+          <path d="M -120 300 C 300 360, 700 240, 1100 336 S 1600 276, 1820 300" stroke-opacity="0.14"/>
+          <path d="M -120 430 C 300 380, 700 480, 1100 460 S 1600 410, 1820 430" stroke-opacity="0.12"/>
+          <path d="M -120 560 C 300 640, 700 480, 1100 608 S 1600 528, 1820 560" stroke-opacity="0.16"/>
+          <path d="M -120 700 C 300 640, 700 760, 1100 736 S 1600 676, 1820 700" stroke-opacity="0.12"/>
+          <path d="M -120 830 C 300 900, 700 760, 1100 872 S 1600 802, 1820 830" stroke-opacity="0.10"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- ============================================================
+       Floating shapes — persistent layer above the per-tab motif
+       (strokes / lines / geometry, blurred + drifting; uses currentColor
+       so it picks up the active theme via --echo-theme)
+       ============================================================ -->
+  <div class="echo-shapes" aria-hidden="true">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g class="echo-shape echo-shape-1" stroke="currentColor" fill="none" stroke-width="1.6" stroke-opacity="0.30">
+        <circle cx="240" cy="220" r="120"/>
+      </g>
+      <g class="echo-shape echo-shape-2" fill="currentColor" fill-opacity="0.22">
+        <polygon points="1280,360 1360,500 1200,500"/>
+      </g>
+      <g class="echo-shape echo-shape-3" stroke="currentColor" stroke-width="2" stroke-opacity="0.26" stroke-linecap="round">
+        <line x1="60" y1="780" x2="520" y2="540"/>
+      </g>
+      <g class="echo-shape echo-shape-4" stroke="currentColor" fill="none" stroke-width="1.4" stroke-opacity="0.28">
+        <rect x="-55" y="-55" width="110" height="110" transform="translate(900 760)"/>
+      </g>
+      <g class="echo-shape echo-shape-5" stroke="currentColor" fill="none" stroke-width="1.4" stroke-opacity="0.32">
+        <circle cx="1420" cy="160" r="58"/>
+      </g>
+      <g class="echo-shape echo-shape-6" stroke="currentColor" fill="none" stroke-width="1.6" stroke-opacity="0.24" stroke-linecap="round">
+        <path d="M 640 880 Q 780 760, 1020 820"/>
+      </g>
+      <g class="echo-shape echo-shape-7" fill="currentColor" fill-opacity="0.32">
+        <circle cx="180" cy="540" r="5"/>
+        <circle cx="210" cy="568" r="3"/>
+        <circle cx="238" cy="538" r="4"/>
+        <circle cx="200" cy="600" r="3"/>
+      </g>
+      <g class="echo-shape echo-shape-8" stroke="currentColor" fill="none" stroke-width="1.4" stroke-opacity="0.26">
+        <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" transform="translate(720 280)"/>
+      </g>
+      <g class="echo-shape echo-shape-9" stroke="currentColor" stroke-width="2" stroke-opacity="0.30" stroke-linecap="round">
+        <line x1="1100" y1="80"  x2="1140" y2="80"/>
+        <line x1="1100" y1="100" x2="1160" y2="100"/>
+        <line x1="1100" y1="120" x2="1130" y2="120"/>
+      </g>
+      <g class="echo-shape echo-shape-10" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.22" stroke-linecap="round">
+        <line x1="1140" y1="900" x2="1480" y2="720"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       Chicago host-city backdrop — fixed photo band at the bottom with
+       a gradient rising from the photo's top color to Chicago blue.
+       Shown only when the Chicago tab is active (body.chicago-active).
+       ============================================================ -->
+  <div class="echo-chicago-bg" aria-hidden="true">
+    <div class="echo-chicago-sky"></div>
+    <img class="echo-chicago-photo" src="assets/Chicago_city_view.jpg" alt="" />
+  </div>
+
+  <!-- ============================================================
+       Hero
+       ============================================================ -->
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Workshop • Nov. 20, 2026 (Friday) • In conjunction with SC '26, Chicago, IL, USA</p>
+      <h1>ECHO: The 1st International Workshop on Edge-Cloud-HPC Operational Continuum</h1>
+    </div>
+    <p class="banner-credit">Banner photo: "<a href="https://en.wikivoyage.org/wiki/File:Chicago-banner6.jpg" target="_blank" rel="noopener">Chicago skyline</a>" by Daniel Schwen / <a href="https://commons.wikimedia.org/wiki/User:Dschwen" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+  </header>
+
+  <!-- ============================================================
+       Tab nav
+       ============================================================ -->
+  <nav class="nav">
+    <div class="container">
+      <button class="tab active" data-tab="home">Home</button>
+      <button class="tab" data-tab="cfp">Call for Papers</button>
+      <button class="tab" data-tab="organization">Organization</button>
+      <button class="tab" data-tab="invited">Invited Talk</button>
+      <button class="tab" data-tab="chicago">Chicago</button>
+      <a class="cta" href="#" id="submitBtn">Submission Portal →</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       Tab content
+       ============================================================ -->
+  <main class="container">
+
+    <section class="tab-pane active" data-tab="home">
+      <div class="card">
+        <h2>About the Workshop</h2>
+        <p>ECHO brings together researchers and practitioners across edge systems, cloud platforms, and high-performance computing. As computing shifts from a single centralized supercomputer toward a continuum spanning sensors, edge devices, and cloud platforms, performance-critical applications increasingly need capabilities long associated with HPC — efficient parallel execution, high-throughput data movement, high-performance I/O, accelerator utilization, topology-aware communication, and rigorous performance engineering.</p>
+        <p>Modern workloads — especially deep learning for perception, forecasting, and control — are end-to-end systems problems: data are generated at the edge, filtered and partially processed near the sensors, then aggregated and trained or refined in the cloud. ECHO aims to formulate and advance a shared research agenda for how HPC technologies can benefit edge and cloud computing — especially sensor-to-edge-to-cloud deep learning pipelines — and to identify what must change when those techniques are deployed in cloud and edge settings.</p>
+      </div>
+      <div class="card">
+        <h2>Workshop Format</h2>
+        <p>ECHO will be held as a half-day workshop on the <strong>morning</strong> of <strong>Nov. 20, 2026 (Friday)</strong>, in conjunction with SC '26 in Chicago, IL. The program combines featured talks that set context, peer-reviewed paper and lightning sessions, a multi-stakeholder panel spanning academia, industry, and national labs, and interactive breakouts for structured ideation and report-backs.</p>
+        <p>The mix is intentional: guided breakouts drive problem formulation, lightning talks and feedback-oriented Q&amp;A socialize early-stage and work-in-progress results, and mixed panels and breakout groups build bridges across the HPC, edge, distributed-systems, networking, and AI-infrastructure communities.</p>
+      </div>
+      <div class="card">
+        <h2>Important Dates</h2>
+        <ul>
+          <li>Paper submission deadline: August 15, 2026 (AoE)</li>
+          <li>Author notification: September 5, 2026</li>
+          <li>Camera-ready deadline: September 26, 2026 (AoE)</li>
+          <li>Artifact / AE materials due: September 26, 2026 (AoE)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-pane" data-tab="cfp">
+      <div class="card">
+        <h2>Call for Papers</h2>
+        <p>We invite original submissions on systems, software, runtime, networking, storage, data management, performance engineering, and AI-driven methods related to the edge-cloud-HPC continuum.</p>
+
+        <h3>Topics of Interest</h3>
+        <p><strong>In-scope topics.</strong> We invite contributions on, but not limited to:</p>
+        <ul>
+          <li>Edge-cloud-HPC workflow integration and orchestration</li>
+          <li>Distributed data management, movement, staging, and reduction</li>
+          <li>Network-aware AI and communication-efficient learning systems</li>
+          <li>Performance portability across heterogeneous computing platforms</li>
+          <li>Cloud-backed scientific computing and HPC-on-cloud workflows</li>
+          <li>Resilience, reproducibility, and observability in distributed systems</li>
+          <li>Cross-layer optimization spanning applications, runtime, and infrastructure</li>
+          <li>Operational continuum support for digital twins and scientific AI</li>
+          <li>Performance optimization for edge/cloud AI</li>
+          <li>Interfaces between edge, cloud, and HPC systems</li>
+          <li>Cloud-based resource abstraction and virtualization for HPC workloads</li>
+          <li>Performance modeling and predictability under multi-tenancy/elastic provisioning</li>
+          <li>Efficient network-aware learning systems</li>
+          <li>Evaluation methodologies: benchmarks, metrics, reproducibility</li>
+          <li>Application-driven data movement optimization (e.g., smart agriculture, autonomous systems)</li>
+        </ul>
+
+        <p><strong>Out-of-scope (to maintain focus).</strong> We will de-emphasize contributions that do <strong>not</strong> connect to the workshop core question of <strong>what HPC technologies offer to edge/cloud computing</strong> or <strong>what changes in HPC-on-cloud/edge.</strong></p>
+
+        <h3>Submission</h3>
+        <p>Submit through the <a href="https://submissions.supercomputing.org" target="_blank" rel="noopener">SC '26 submissions portal</a>: select <i>"Make a new submission"</i> under the <b>Submit</b> panel, then choose <b>"SC Workshop: ECHO"</b>.</p>
+
+        <h3>Important Dates</h3>
+        <ul>
+          <li>Paper submission deadline: August 15, 2026 (AoE)</li>
+          <li>Author notification: September 5, 2026</li>
+          <li>Camera-ready deadline: September 26, 2026 (AoE)</li>
+          <li>Artifact / AE materials due: September 26, 2026 (AoE)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-pane" data-tab="organization">
+      <div class="card">
+        <h2>Organizing Committee</h2>
+        <ul>
+          <li><b>Dong Chen</b> (Co-Chair), Colorado School of Mines, United States</li>
+          <li><b>Jiannan Tian</b> (Co-Chair), Oakland University, United States</li>
+          <li><b>Jiajun Huang</b> (Co-Chair), University of South Florida, United States</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Steering Committee</h2>
+        <ul>
+          <li><b>Sheng Di</b>, <i>Institute Fellow of NAISE</i>, Argonne National Laboratory, United States</li>
+          <li><b>Weisong Shi</b>, <i>IEEE Fellow</i>, University of Delaware, United States</li>
+          <li><b>Shiqiang Wang</b>, <i>IEEE Fellow</i>, University of Exeter, United Kingdom</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Technical Program Committee</h2>
+        <p>The list is sorted alphabetically by last name.</p>
+        <ul>
+          <li><b>Daoce Wang</b> (Chair), University of Nebraska Omaha, United States</li>
+          <li><b>Sheng Di</b>, Argonne National Laboratory, United States</li>
+          <li><b>Liting Hu</b>, University of California Santa Cruz, United States</li>
+          <li><b>Peng Jiang</b>, University of Nebraska Omaha, United States</li>
+          <li><b>Qi Li</b>, University of Oklahoma, United States</li>
+          <li><b>Wei-Zhen Liang</b>, University of Nebraska Lincoln, United States</li>
+          <li><b>Robert Underwood</b>, Argonne National Laboratory, United States</li>
+          <li><b>Shiqiang Wang</b>, University of Exeter, United Kingdom</li>
+          <li><b>Miao Yin</b>, University of Texas at Arlington, United States</li>
+          <li><b>Keyang Yu</b>, Marquette University, United States</li>
+          <li><b>Kai Zhao</b>, Florida State University, United States</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-pane" data-tab="invited">
+      <div class="card">
+        <h2>Invited Talk</h2>
+        <div class="tbd-block">
+          <div class="big">To be determined</div>
+          <p>The invited speaker and talk details will be announced ahead of the workshop. Check back closer to <b>Nov. 20, 2026</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-pane" data-tab="chicago">
+      <div class="card">
+        <h2>Welcome to Chicago</h2>
+        <p>ECHO is co-located with <b>SC '26</b> in Chicago, Illinois — the third-largest city in the United States, set on the southwestern shore of Lake Michigan. Beyond the conference, the city is worth a few extra days: a walkable downtown framed by lakefront parks, a celebrated architectural skyline, world-class museums, deep music traditions (blues, jazz, house), and a food scene that ranges from neighborhood institutions to fine dining.</p>
+        <p>The convention venue sits a short walk from Lake Michigan and the Museum Campus, with the CTA <i>'L'</i> connecting most of what's listed below.</p>
+      </div>
+
+      <div class="card">
+        <h2>Official tourism &amp; city info</h2>
+        <ul>
+          <li><a href="https://www.choosechicago.com/" target="_blank" rel="noopener">Choose Chicago ↗</a> — the city's official destination marketing organization. Events calendar, neighborhood guides, hotel + transit info.</li>
+          <li><a href="https://www.chicago.gov/city/en/depts/dca/provdrs/visiting_chicago.html" target="_blank" rel="noopener">City of Chicago — Visiting ↗</a> — official municipal visitor page.</li>
+          <li><a href="https://www.enjoyillinois.com/places-to-go/chicago/" target="_blank" rel="noopener">Enjoy Illinois — Chicago ↗</a> — state tourism board's Chicago overview.</li>
+          <li><a href="https://www.transitchicago.com/" target="_blank" rel="noopener">CTA (Transit Authority) ↗</a> — trains, buses, and the Ventra fare system.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>If you have an extra day</h2>
+
+        <h3>Architecture &amp; skyline</h3>
+        <ul>
+          <li><a href="https://www.architecture.org/tours/detail/chicago-architecture-river-cruise/" target="_blank" rel="noopener">Chicago Architecture Center river cruise ↗</a> — the canonical introduction to the skyline, narrated by CAC docents.</li>
+          <li><a href="https://www.millenniumpark.org/" target="_blank" rel="noopener">Millennium Park ↗</a> — downtown park with the Pritzker Pavilion and Cloud Gate sculpture.</li>
+          <li><a href="https://www.chicagoriverwalk.us/" target="_blank" rel="noopener">The Chicago Riverwalk ↗</a> — a 1.25-mile pedestrian path along the main branch of the river.</li>
+        </ul>
+
+        <h3>Museums</h3>
+        <ul>
+          <li><a href="https://www.artic.edu/" target="_blank" rel="noopener">Art Institute of Chicago ↗</a> — encyclopedic art collection, on Michigan Avenue.</li>
+          <li><a href="https://www.fieldmuseum.org/" target="_blank" rel="noopener">Field Museum of Natural History ↗</a></li>
+          <li><a href="https://www.msichicago.org/" target="_blank" rel="noopener">Museum of Science and Industry ↗</a> — likely of particular interest to the SC audience.</li>
+          <li><a href="https://www.adlerplanetarium.org/" target="_blank" rel="noopener">Adler Planetarium ↗</a> — on the Museum Campus, with a panoramic view back at the skyline.</li>
+        </ul>
+
+        <h3>Food &amp; neighborhoods</h3>
+        <p>Chicago is associated with deep-dish pizza, Italian beef, and Chicago-style hot dogs, but the day-to-day food scene is much broader. <a href="https://www.choosechicago.com/neighborhoods/" target="_blank" rel="noopener">Choose Chicago's neighborhood guide ↗</a> is a good starting point — Pilsen, Logan Square, Chinatown, Hyde Park, Andersonville, and the West Loop are all reachable by CTA.</p>
+      </div>
+
+      <div class="card">
+        <h2>Getting there</h2>
+        <ul>
+          <li><a href="https://www.flychicago.com/ohare/home/pages/default.aspx" target="_blank" rel="noopener">O'Hare International Airport (ORD) ↗</a> — primary international gateway; connected to downtown via the CTA Blue Line.</li>
+          <li><a href="https://www.flychicago.com/midway/home/pages/default.aspx" target="_blank" rel="noopener">Midway International Airport (MDW) ↗</a> — secondary airport; CTA Orange Line into the Loop.</li>
+          <li><a href="https://www.amtrak.com/stations/chi" target="_blank" rel="noopener">Amtrak — Chicago Union Station ↗</a> — long-distance rail hub for travelers coming from the Midwest, East, and West.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="muted-note">The links above point to official tourism, municipal, and operator sites. ECHO is not affiliated with these organizations — they're provided as a convenience for attendees.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <p class="copyright">© 2026 ECHO Workshop</p>
+      <p class="photo-credit chi">Skyline photo: Yuchien Ning / <a href="https://commons.wikimedia.org/wiki/File:Chicago_city_view.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       Submission portal modal
+       ============================================================ -->
+  <div class="modal-backdrop" id="submitModal">
+    <div class="modal">
+      <h3>Submit to ECHO</h3>
+      <ol>
+        <li>Go to <a href="https://submissions.supercomputing.org" target="_blank" rel="noopener">submissions.supercomputing.org</a>.</li>
+        <li>Under the <b>Submit</b> panel, select <b>"Make a new submission"</b>.</li>
+        <li>Choose <b>"SC Workshop: ECHO"</b> as the venue.</li>
+      </ol>
+      <div class="modal-actions">
+        <a class="btn" href="#" id="closeModal">Close</a>
+        <a class="btn primary" href="https://submissions.supercomputing.org" target="_blank" rel="noopener">Open portal ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Per-tab theme colors
+      var THEMES = {
+        home:         '#c9171e',
+        cfp:          '#009a00',
+        organization: '#2b66d3',
+        invited:      '#1a1a1a',
+        chicago:      '#41b6e6'
+      };
+
+      var tabs   = document.querySelectorAll('.nav .tab');
+      var panes  = document.querySelectorAll('.tab-pane');
+      var layers = document.querySelectorAll('.echo-art .layer');
+      var root   = document.documentElement;
+
+      // Safari tints its toolbar/UI from <meta name="theme-color">. Bright
+      // theme colors (e.g. the Chicago light blue) make a garish toolbar with
+      // awkward contrast; dark ones (a maroon) look like intentional chrome.
+      // So we derive a deep, Safari-friendly shade per tab: cap HSL lightness
+      // so every toolbar is dark enough for legible light UI text. Already-dark
+      // themes (near-black) pass through unchanged.
+      var themeMeta = document.querySelector('meta[name="theme-color"]');
+      function chromeColor(hex) {
+        var m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+        if (!m) return hex;
+        var r = parseInt(m[1], 16) / 255, g = parseInt(m[2], 16) / 255, b = parseInt(m[3], 16) / 255;
+        var max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2, h = 0, s = 0, d = max - min;
+        if (d) {
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+          else if (max === g) h = (b - r) / d + 2;
+          else h = (r - g) / d + 4;
+          h /= 6;
+        }
+        l = Math.min(l, 0.34); // cap lightness → always a deep, legible tint
+        function hue(p, q, t) { if (t < 0) t += 1; if (t > 1) t -= 1; if (t < 1 / 6) return p + (q - p) * 6 * t; if (t < 1 / 2) return q; if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6; return p; }
+        var rr, gg, bb;
+        if (!s) { rr = gg = bb = l; }
+        else { var q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q; rr = hue(p, q, h + 1 / 3); gg = hue(p, q, h); bb = hue(p, q, h - 1 / 3); }
+        function hx(v) { v = Math.round(v * 255); return (v < 16 ? '0' : '') + v.toString(16); }
+        return '#' + hx(rr) + hx(gg) + hx(bb);
+      }
+      function setThemeColor(hex) {
+        if (!themeMeta) { themeMeta = document.createElement('meta'); themeMeta.setAttribute('name', 'theme-color'); document.head.appendChild(themeMeta); }
+        themeMeta.setAttribute('content', chromeColor(hex || '#8b1e3f'));
+      }
+
+      function setTab(id) {
+        root.style.setProperty('--echo-theme', THEMES[id] || '#8b1e3f');
+        setThemeColor(THEMES[id]);
+        document.body.classList.toggle('chicago-active', id === 'chicago');
+        try { localStorage.setItem('echoTab', id); } catch (e) {}
+        tabs.forEach(function (t) {
+          t.classList.toggle('active', t.dataset.tab === id);
+        });
+        panes.forEach(function (p) {
+          // Re-trigger fade-in animation
+          if (p.dataset.tab === id) {
+            p.classList.remove('active');
+            // Force reflow so the animation restarts
+            void p.offsetWidth;
+            p.classList.add('active');
+          } else {
+            p.classList.remove('active');
+          }
+        });
+        layers.forEach(function (l) {
+          l.classList.toggle('active', l.dataset.tab === id);
+        });
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () { setTab(t.dataset.tab); });
+      });
+      // Expose so the Tweaks panel can jump to the Chicago tab on edit.
+      window.__echoSetTab = setTab;
+
+      // Restore the last-viewed tab so state (incl. the Chicago white footer)
+      // survives a refresh — not only on click.
+      try {
+        var savedTab = localStorage.getItem('echoTab');
+        if (savedTab && THEMES[savedTab]) { setTab(savedTab); }
+      } catch (e) {}
+
+      // Set the Safari toolbar tint for the initially-active tab on first load
+      // (when there is no saved tab, setTab above isn't called).
+      (function () {
+        var active = document.querySelector('.nav .tab.active');
+        setThemeColor(THEMES[active ? active.dataset.tab : 'home']);
+      })();
+
+      // CFP background lines — generated to fill full height
+      (function () {
+        var g = document.getElementById('cfp-lines');
+        if (!g) return;
+        var NS = 'http://www.w3.org/2000/svg';
+        for (var i = 0; i < 26; i++) {
+          var y = -20 + i * 40;
+          var w = 220 + ((i * 73) % 380);
+          var x = 60 + ((i * 47) % 200);
+          var op = 0.08 + (i % 3) * 0.02;
+
+          var l1 = document.createElementNS(NS, 'line');
+          l1.setAttribute('x1', x); l1.setAttribute('y1', y);
+          l1.setAttribute('x2', x + w); l1.setAttribute('y2', y);
+          l1.setAttribute('stroke-opacity', op.toFixed(3));
+          g.appendChild(l1);
+
+          var l2 = document.createElementNS(NS, 'line');
+          var rx = 920 + (x * 0.5);
+          l2.setAttribute('x1', rx); l2.setAttribute('y1', y + 20);
+          l2.setAttribute('x2', rx + w * 0.9); l2.setAttribute('y2', y + 20);
+          l2.setAttribute('stroke-opacity', (op * 0.85).toFixed(3));
+          g.appendChild(l2);
+        }
+      })();
+
+      // Modal wiring
+      var modal = document.getElementById('submitModal');
+      var submitBtn = document.getElementById('submitBtn');
+      var closeModalBtn = document.getElementById('closeModal');
+      submitBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        modal.classList.add('open');
+      });
+      closeModalBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        modal.classList.remove('open');
+      });
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) modal.classList.remove('open');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') modal.classList.remove('open');
+      });
+    })();
+  </script>
+
+  <!-- ============================================================
+       Tweaks panel — vanilla, dependency-free. Hidden in production;
+       appears only when the host posts __activate_edit_mode (the Tweaks
+       toolbar toggle). Persists via __edit_mode_set_keys; the host rewrites
+       the EDITMODE-BEGIN/END block below on disk.
+       ============================================================ -->
+  <script>
+    (function () {
+      var DEFAULTS = /*EDITMODE-BEGIN*/{
+        "skyTop": "#41b6e6",
+        "photoHeight": 410,
+        "feather": 84,
+        "cardAlpha": 0.6,
+        "cardBlur": 12,
+        "anchor": "page",
+        "footerTop": 0,
+        "footerBottom": 0
+      }/*EDITMODE-END*/;
+
+      var state = Object.assign({}, DEFAULTS);
+      var root = document.documentElement;
+
+      function apply() {
+        root.style.setProperty('--chi-sky-top', state.skyTop);
+        root.style.setProperty('--chi-photo-h', state.photoHeight + 'px');
+        root.style.setProperty('--chi-feather', state.feather + 'px');
+        root.style.setProperty('--chi-card-alpha', String(state.cardAlpha));
+        root.style.setProperty('--chi-card-blur', state.cardBlur + 'px');
+        root.style.setProperty('--footer-pt', state.footerTop + 'px');
+        root.style.setProperty('--footer-pb', state.footerBottom + 'px');
+        document.body.classList.toggle('chi-anchor-page', state.anchor === 'page');
+      }
+      apply();
+
+      // Chicago-specific keys jump to the Chicago tab so the effect is visible;
+      // footer keys apply to all tabs, so they don't force a tab switch.
+      var CHI_KEYS = { skyTop: 1, photoHeight: 1, feather: 1, cardAlpha: 1, cardBlur: 1, anchor: 1 };
+
+      function setTweak(k, v) {
+        state[k] = v;
+        apply();
+        if (CHI_KEYS[k] && window.__echoSetTab) { window.__echoSetTab('chicago'); }
+        try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: (function () { var o = {}; o[k] = v; return o; })() }, '*'); } catch (e) {}
+      }
+
+      // ---- Build the panel ------------------------------------------------
+      var SKY_COLORS = ['#41b6e6', '#1f6f8b', '#0b2545', '#c7600e'];
+      var panel = document.createElement('div');
+      panel.className = 'echo-tweaks';
+      panel.style.display = 'none';
+      panel.innerHTML =
+        '<header><h4>Tweaks · Chicago</h4><button class="x" title="Close">×</button></header>' +
+        '<div class="sect">Skyline backdrop</div>' +
+        '<div class="row"><label>Sky color</label><div class="swatches" data-k="skyTop"></div></div>' +
+        '<div class="row"><label>Skyline height <span class="val" data-v="photoHeight"></span></label>' +
+          '<input type="range" data-k="photoHeight" min="180" max="640" step="10"></div>' +
+        '<div class="row"><label>Seam feather <span class="val" data-v="feather"></span></label>' +
+          '<input type="range" data-k="feather" min="0" max="160" step="4"></div>' +
+        '<div class="row"><label>Anchor</label>' +
+          '<div class="seg" data-k="anchor">' +
+            '<button data-val="fixed">Viewport</button>' +
+            '<button data-val="page">Page bottom</button></div></div>' +
+        '<div class="sect">Content cards</div>' +
+        '<div class="row"><label>Card opacity <span class="val" data-v="cardAlpha"></span></label>' +
+          '<input type="range" data-k="cardAlpha" min="0.3" max="1" step="0.05"></div>' +
+        '<div class="row"><label>Card blur <span class="val" data-v="cardBlur"></span></label>' +
+          '<input type="range" data-k="cardBlur" min="0" max="30" step="1"></div>' +
+        '<div class="sect">Footer · © + credit (all tabs)</div>' +
+        '<div class="row"><label>Space above <span class="val" data-v="footerTop"></span></label>' +
+          '<input type="range" data-k="footerTop" min="0" max="96" step="2"></div>' +
+        '<div class="row"><label>Space below <span class="val" data-v="footerBottom"></span></label>' +
+          '<input type="range" data-k="footerBottom" min="0" max="96" step="2"></div>';
+      document.body.appendChild(panel);
+
+      // Swatches
+      var sw = panel.querySelector('.swatches[data-k="skyTop"]');
+      SKY_COLORS.forEach(function (c) {
+        var b = document.createElement('div');
+        b.className = 'swatch' + (c === state.skyTop ? ' sel' : '');
+        b.style.background = c; b.dataset.val = c; b.title = c;
+        b.addEventListener('click', function () {
+          setTweak('skyTop', c);
+          sw.querySelectorAll('.swatch').forEach(function (s) { s.classList.toggle('sel', s.dataset.val === c); });
+        });
+        sw.appendChild(b);
+      });
+
+      // Sliders
+      function fmt(k, v) {
+        if (k === 'cardAlpha') return Math.round(v * 100) + '%';
+        return v + 'px';
+      }
+      panel.querySelectorAll('input[type="range"]').forEach(function (inp) {
+        var k = inp.dataset.k;
+        inp.value = state[k];
+        var valEl = panel.querySelector('.val[data-v="' + k + '"]');
+        if (valEl) valEl.textContent = fmt(k, state[k]);
+        inp.addEventListener('input', function () {
+          var v = (k === 'cardAlpha') ? parseFloat(inp.value) : parseInt(inp.value, 10);
+          if (valEl) valEl.textContent = fmt(k, v);
+          setTweak(k, v);
+        });
+      });
+
+      // Segmented (anchor)
+      var seg = panel.querySelector('.seg[data-k="anchor"]');
+      function syncSeg() {
+        seg.querySelectorAll('button').forEach(function (b) { b.classList.toggle('sel', b.dataset.val === state.anchor); });
+      }
+      seg.querySelectorAll('button').forEach(function (b) {
+        b.addEventListener('click', function () { setTweak('anchor', b.dataset.val); syncSeg(); });
+      });
+      syncSeg();
+
+      // ---- Drag to reposition --------------------------------------------
+      var head = panel.querySelector('header');
+      head.addEventListener('mousedown', function (e) {
+        if (e.target.classList.contains('x')) return;
+        var r = panel.getBoundingClientRect();
+        var ox = e.clientX - r.left, oy = e.clientY - r.top;
+        head.classList.add('dragging');
+        function mv(ev) {
+          panel.style.left = (ev.clientX - ox) + 'px';
+          panel.style.top = (ev.clientY - oy) + 'px';
+          panel.style.right = 'auto';
+        }
+        function up() { head.classList.remove('dragging'); window.removeEventListener('mousemove', mv); window.removeEventListener('mouseup', up); }
+        window.addEventListener('mousemove', mv); window.addEventListener('mouseup', up);
+      });
+
+      // ---- Host protocol --------------------------------------------------
+      panel.querySelector('.x').addEventListener('click', function () {
+        panel.style.display = 'none';
+        try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (e) {}
+      });
+      window.addEventListener('message', function (e) {
+        var t = e && e.data && e.data.type;
+        if (t === '__activate_edit_mode') { panel.style.display = ''; if (window.__echoSetTab) window.__echoSetTab('chicago'); }
+        else if (t === '__deactivate_edit_mode') { panel.style.display = 'none'; }
+      });
+      try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+    })();
+  </script>
+
+</body>
+
+</html>
