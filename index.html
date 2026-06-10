@@ -305,16 +305,16 @@
       </div>
       <div class="card">
         <h2>Grounded in Case Studies</h2>
-        <p>To keep discussions concrete and outcomes actionable, ECHO anchors its program in end-to-end case studies: sensor-to-edge-to-cloud pipelines in which HPC techniques are deployed, stressed, and adapted. We emphasize pipelines such as:</p>
+        <p>To keep discussions concrete and outcomes actionable, ECHO anchors its program in end-to-end case studies: sensor-to-edge-to-cloud pipelines in which HPC techniques are deployed, stressed, and adapted. Deep learning is a natural emphasis, but the continuum carries conventional workloads just as much: streaming signal processing, in-situ compression and data reduction, data assimilation, and coupled simulation all qualify. We emphasize pipelines such as:</p>
         <ul>
-          <li><b>Real-time perception and analytics</b>: vision and sensor fusion under strict inference-latency budgets at the edge</li>
-          <li><b>Predictive maintenance</b>: continuous telemetry from fleets of machines, with models periodically retrained in the cloud</li>
+          <li><b>Real-time perception and analytics</b>: vision, sensor fusion, and classic stream analytics under strict latency budgets at the edge</li>
+          <li><b>Predictive maintenance</b>: continuous telemetry from fleets of machines, from spectral analysis to models periodically retrained in the cloud</li>
           <li><b>Scientific instruments and streaming experiments</b>: beamlines, telescopes, and sensor networks streaming into HPC-scale analysis</li>
           <li><b>Smart manufacturing</b>: closed-loop control and quality inspection on the factory floor</li>
           <li><b>Intelligent transportation</b>: autonomous and connected vehicles operating over bandwidth-constrained, intermittent links</li>
           <li><b>Environmental monitoring and smart agriculture</b>: wide-area, power-constrained sensing with bursty uplinks</li>
         </ul>
-        <p>These workflows share a common signature: (i) bursty, heterogeneous data streams; (ii) strict latency constraints at the edge; (iii) periodic training and refinement in the cloud; and (iv) bandwidth and reliability constraints across networks. The workshop examines how HPC-derived techniques (communication-avoiding algorithms, performance models, hierarchical scheduling, topology-aware collectives, and efficient GPU/accelerator programming) improve both <b>inference at the edge</b> and <b>training/aggregation in the cloud</b>.</p>
+        <p>These workflows share a common signature: (i) bursty, heterogeneous data streams; (ii) strict latency constraints at the edge; (iii) periodic training, recalibration, or reanalysis in the cloud; and (iv) bandwidth and reliability constraints across networks. The workshop examines how HPC-derived techniques (communication-avoiding algorithms, performance models, hierarchical scheduling, topology-aware collectives, and efficient GPU/accelerator programming) improve both <b>low-latency processing at the edge</b> (inference, filtering, feature extraction, control) and <b>heavy computation in the cloud</b> (training, aggregation, simulation, reanalysis).</p>
         <p>Case-study and experience papers built around such pipelines are especially encouraged; see the <a href="#" data-goto-tab="cfp">Call for Papers</a>.</p>
       </div>
       <div class="card">
@@ -346,12 +346,12 @@
       <div class="card">
         <h2>Call for Papers</h2>
         <p>We invite original submissions on systems, software, runtime, networking, storage, data management, performance engineering, and AI-driven methods related to the edge-cloud-HPC continuum.</p>
-        <p><strong>Case studies are especially welcome.</strong> ECHO is an application-driven workshop: we particularly encourage submissions that walk through an end-to-end sensor-to-edge-to-cloud deployment (e.g., real-time perception, predictive maintenance, scientific instruments and streaming experiments, smart manufacturing, intelligent transportation, environmental monitoring) and report which HPC techniques helped, where they broke down, and what had to change, including negative results and lessons learned.</p>
+        <p><strong>Case studies are especially welcome.</strong> ECHO is an application-driven workshop: we particularly encourage submissions that walk through an end-to-end sensor-to-edge-to-cloud deployment, whether AI-driven or conventional (e.g., real-time perception, predictive maintenance, scientific instruments and streaming experiments, smart manufacturing, intelligent transportation, environmental monitoring, streaming signal processing, in-situ compression and data reduction), and report which HPC techniques helped, where they broke down, and what had to change, including negative results and lessons learned.</p>
 
         <h3>Topics of Interest</h3>
         <p><strong>In-scope topics.</strong> We invite contributions on, but not limited to:</p>
         <ul>
-          <li>Case studies and experience reports on end-to-end sensor-to-edge-to-cloud pipelines (including negative results and lessons learned)</li>
+          <li>Case studies and experience reports on end-to-end sensor-to-edge-to-cloud pipelines, AI-driven or conventional (including negative results and lessons learned)</li>
           <li>Edge-cloud-HPC workflow integration and orchestration</li>
           <li>Distributed data management, movement, staging, and reduction</li>
           <li>Network-aware AI and communication-efficient learning systems</li>
