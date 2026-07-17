@@ -650,16 +650,27 @@
       }
 
       tabs.forEach(function (t) {
-        t.addEventListener('click', function () { setTab(t.dataset.tab); });
+        t.addEventListener('click', function () {
+          setTab(t.dataset.tab);
+          if (history.pushState) { history.pushState(null, '', '#' + t.dataset.tab); }
+          else { location.hash = t.dataset.tab; }
+        });
       });
       // Expose so the Tweaks panel can jump to the Chicago tab on edit.
       window.__echoSetTab = setTab;
 
-      // Restore the last-viewed tab so state (incl. the Chicago white footer)
-      // survives a refresh — not only on click.
+      window.addEventListener('hashchange', function () {
+        var id = location.hash.replace('#', '');
+        if (id && THEMES[id]) { setTab(id); }
+      });
+
+      // Deep link (#cfp, #organization, ...) wins; else restore last-viewed
+      // tab so state (incl. the Chicago white footer) survives a refresh.
       try {
+        var hashTab = location.hash.replace('#', '');
         var savedTab = localStorage.getItem('echoTab');
-        if (savedTab && THEMES[savedTab]) { setTab(savedTab); }
+        if (hashTab && THEMES[hashTab]) { setTab(hashTab); }
+        else if (savedTab && THEMES[savedTab]) { setTab(savedTab); }
       } catch (e) { }
 
       // Set the Safari toolbar tint for the initially-active tab on first load
