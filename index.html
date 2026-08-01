@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
   <link rel="icon" href="assets/icon-192.png" />
   <title>ECHO Workshop at SC '26</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <!-- Per-site host-city backdrop config. Everything else is shared:
        style.css is kept byte-identical across the IWBDR and ECHO sites. -->
   <style>
@@ -290,11 +290,12 @@
   <nav class="nav">
     <div class="container">
       <button class="tab active" data-tab="home">Home</button>
+      <button class="tab" data-tab="program">Program</button>
+      <button class="tab" data-tab="invited">Invited Talk</button>
       <button class="tab" data-tab="cfp">Call for Papers</button>
       <button class="tab" data-tab="organization">Organization</button>
-      <button class="tab" data-tab="invited">Invited Talk</button>
       <button class="tab" data-tab="chicago">Chicago</button>
-      <a class="cta" href="#" id="submitBtn">Submission Portal →</a>
+      <a class="cta muted" href="#" id="submitBtn">Submission Portal (View-Only)</a>
     </div>
   </nav>
 
@@ -359,6 +360,297 @@
       </div>
     </section>
 
+    <section class="tab-pane" data-tab="program">
+      <div class="card">
+        <h2>Program</h2>
+        <p>ECHO runs as a half-day morning workshop on <b>Nov. 20, 2026</b>, featuring an invited talk, 8 paper
+          presentations (5 regular, 3 short), and a panel discussion. Exact times below are placeholders until the final
+          schedule is set; click a paper's <b>Abstract</b> to expand it.</p>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th class="sched-time">Time</th>
+              <th class="sched-session">Session</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session plain">Opening</td>
+              <td>Opening remarks from the organizing committee.</td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session plain">Invited Talk</td>
+              <td>
+                <p><b>Dr. Franck Cappello</b>, Argonne National Laboratory</p>
+                <p class="paper-authors">ACM Fellow, IEEE Fellow: see the <button type="button" class="linklike"
+                    data-jump-tab="invited">Invited Talk</button> page for his full profile.</p>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">How Much Can We Compress Field Images for Smart Agriculture?<span
+                    class="paper-type">Short Paper</span></p>
+                <p class="paper-authors">Daoce Wang (University of Nebraska Omaha), Zonglin Yang (University of
+                  Nebraska–Lincoln), Wei-Zhen Liang (University of Nebraska–Lincoln), Zhisen Lai (University of Nebraska
+                  Omaha), Xiaoqian Zhang (University of Nebraska Omaha)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>Camera-based smart-agriculture systems capture visual evidence of weeds, diseases, and pests, but
+                    multi-megapixel images are costly to transmit over low-power field networks. Many systems therefore
+                    perform on-device analysis and transmit only compact summaries, preventing remote visual
+                    verification. Image compression can reduce this burden, but must preserve information needed for
+                    downstream analysis. We present a preliminary task-level study using four annotated sugar-beet field
+                    images compressed with JPEG and JPEG 2000 over a 2–16x range, rerunning the same species-level weed
+                    detector on each reconstruction. Results show that lossy compression can substantially reduce image
+                    size while retaining useful detection performance, with JPEG 2000 consistently outperforming JPEG at
+                    the task level. We also find that similar PSNR values do not necessarily imply similar detection
+                    utility. However, payloads remain costly even at compression ratios that preserve detection quality,
+                    motivating agriculture-specific compression methods that more aggressively reduce data while
+                    protecting task-relevant visual information.</p>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">PerfDecode: Accelerating LLM Decoding on Systolic Arrays via Performance
+                  Modeling<span class="paper-type">Short Paper</span></p>
+                <p class="paper-authors">Dinghong Song (UC Merced), Rishabh Rajesh (Amazon), Karthick Gopalswamy
+                  (Amazon), Patrick Lange (Amazon)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>The autoregressive nature of large language model (LLM) decoding results in matrix multiplications
+                    with small token dimensions, which underutilize systolic arrays and exhibit low arithmetic
+                    intensity. Efficient execution of these workloads requires jointly improving processing-element
+                    utilization and coordinating data movement with computation under limited on-chip memory. We present
+                    PerfDecode, a performance-model-guided approach to accelerating LLM decoding on systolic arrays.
+                    PerfDecode reorganizes matrix multiplication execution to exploit idle processing elements and
+                    pipeline data movement with computation. At its core, an analytical performance model captures DMA
+                    transfer and launch overhead, systolic-array computation, reduction and write-back costs, and
+                    on-chip memory constraints to automatically determine blocking configurations for different matrix
+                    shapes. On AWS Trainium2, PerfDecode consistently outperforms tiled matmul across diverse decode
+                    operators in Llama-3-8B and Llama-3-70B, achieving geometric-mean speedups of 2.73x and 2.85x,
+                    respectively.</p>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">SPEAR: Semantic Partitioning and Edge-Adapted Routing for Distributed LLM
+                  Serving<span class="paper-type">Short Paper</span></p>
+                <p class="paper-authors">Dmytro Kublytskyi (Colorado School of Mines), Su Wang (Colorado School of
+                  Mines), Dong Chen (Colorado School of Mines)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>Edge deployment of LLMs requires multiple devices working together, since no single device matches
+                    a cloud server's range. Existing edge routers treat each query as one unit and use fixed,
+                    offline-trained policies that break down as workloads change. We present SPEAR (Semantic
+                    Partitioning and Edge-Adapted Routing), which routes work at the subtask level and keeps adapting
+                    after deployment. We split each query into subtasks, send each to an edge device by capability score
+                    and risk threshold, and fall back to a cloud model only when confidence is too low. We also update
+                    each device's LoRA parameters from cloud feedback, so edge models and the router keep improving
+                    without cloud-side retraining. On a testbed of Raspberry Pi 4s, Jetson Orins, and an RTX 4090
+                    server, SPEAR reaches 94.7% routing accuracy, beating baselines like RouteLLM, with only 32.4 ms
+                    overhead; local adaptation raises Banking77 accuracy from 31.0% to 56.5% over five rounds.</p>
+                </details>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session plain">Break</td>
+              <td>Coffee break.</td>
+            </tr>
+
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">Reinforcement Learning for Dynamic Memory Scaling in HPC Workloads on Cloud</p>
+                <p class="paper-authors">Ade Pramono (KTH), Jie Ren (William &amp; Mary), Ivy Peng (KTH)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>Memory over-provisioning results in resource underutilization when HPC workloads run on Kubernetes.
+                    The default Vertical Pod Autoscaler (VPA) cannot anticipate phase-driven memory spikes for first-run
+                    HPC jobs. In this work, we present a reinforcement learning (RL) recommender that formulates
+                    vertical memory scaling as a Markov Decision Process and trains a Proximal Policy Optimization (PPO)
+                    agent on 3,353 real Prometheus traces. Evaluated on a live Google Kubernetes Engine (GKE) cluster
+                    using LAMMPS, graph analytics, in-memory analytics, and MLPerf 3D-UNet, the RL agent reclaims 31.6%
+                    of the available memory headroom and incurs at most one OOM event, while VPA's static provisioning
+                    does not adapt to workload phases and would have been insufficient to avoid OOM in 29 runs.</p>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">PRISM: Task-aware Slimming for Edge-Cloud LLMs</p>
+                <p class="paper-authors">Su Wang (Colorado School of Mines), Dmytro Kublytskyi (Colorado School of
+                  Mines), Dong Chen (Colorado School of Mines)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>LLM compression for cloud and HPC settings assumes diverse, unpredictable workloads, but edge
+                    deployments typically serve a single fixed task: unlike cloud inference, which is bottlenecked by
+                    attention and KV-cache transfer, edge inference is bottlenecked by MLP layers. We further find that
+                    layer and weight importance carry task-specific sensitivity signatures: a layer or channel prunable
+                    for one task can be critical for another. Building on these insights, we present a task-aware
+                    compression framework, PRISM, for edge-cloud LLM serving. The cloud profiles per-task layer and
+                    weight sensitivity via causal ablation and AWQ-style quantization error, encoding results as an
+                    execution layer mask and a precision weight mask woven into a task-specialized inference DAG. On the
+                    edge, a sliding-chunk scheduler streams weights with the minimum resident window that fully overlaps
+                    prefetch with computation. Evaluated on SmolLM2 and Qwen2.5, our pipeline cuts peak memory by 2.9x
+                    and end-to-end latency by 26% versus a dense baseline.</p>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">Placing the Control Plane: Cloud-Native Federated Learning across Batch-Scheduled
+                  HPC</p>
+                <p class="paper-authors">Paul J. Wright (Bristol Centre for Supercomputing)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>The United Kingdom's AI Research Resource (AIRR) opens national supercomputers to a community
+                    familiar with always-reachable cloud services. With batch-scheduled HPC, a user requests a
+                    time-bounded allocation that is then reclaimed. Federated Learning (FL) exposes this tension,
+                    pairing a long-lived control plane with short-lived training. We characterize the resulting
+                    placement asymmetry: the coordination server sees only model updates and control metadata, so it can
+                    sit on neutral infrastructure, whereas the client control process is bound to the participating
+                    site's data and must remain within its trust boundary. The outbound-only connection this implies is
+                    also how edge clients connect, though the batch-scheduler mismatch is specific to HPC. We
+                    demonstrate a cross-silo federation spanning three independently administered systems (Isambard-AI,
+                    Isambard 3, and Zenith) using unmodified production FL frameworks (FLARE-wrapped Flower), measure
+                    the cost the client placement incurs, and propose Kubernetes-as-a-service as the in-boundary home
+                    for the persistent process.</p>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">SplitFT: An Edge-Cloud Collaborative Federated Split Learning System for LLM
+                  Fine-Tuning</p>
+                <p class="paper-authors">Yimeng Shan (Hong Kong Polytechnic University), Zhaorui Zhang (Hong Kong
+                  Polytechnic University), Sheng Di (Argonne National Laboratory), Yu Liu (Hong Kong Polytechnic
+                  University), Xiaoyi Lu (University of California, Merced), Benben Liu (University of Hong Kong)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>Federated Split Learning (FSL) has emerged as an effective paradigm for mitigating the
+                    computational burden of edge clients in classical federated learning while preserving data privacy.
+                    However, applying FSL to large language model (LLM) fine-tuning introduces several critical
+                    challenges. In particular, cut-layer selection must be adaptively configured across clients to
+                    accommodate heterogeneous data distributions and device capabilities, which can significantly affect
+                    system performance. Moreover, reducing communication overhead during fine-tuning remains an
+                    important yet underexplored problem. We propose SplitFT, an edge-cloud collaborative federated split
+                    learning system for LLM fine-tuning. SplitFT allows clients to select different cut layers according
+                    to their computational resources and model performance, and further reduces communication costs by
+                    decreasing the LoRA rank at the cut layer. To better emulate real-world data heterogeneity, we
+                    introduce a length-based Dirichlet partitioning strategy. Extensive experiments on popular
+                    benchmarks demonstrate that SplitFT outperforms state-of-the-art methods in both fine-tuning
+                    efficiency and model performance.</p>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session">Paper</td>
+              <td>
+                <p class="paper-title">Automated Task Placement for Hybrid HPC-Serverless Workflows</p>
+                <p class="paper-authors">Vijay Thurimella (HPE Labs), Anderson Andrei Da Silva (Inria France), Gourav
+                  Rattihalli (HPE Labs), Tainã Coleman (San Diego Supercomputer Center), Rafael Ferreira Da Silva (Oak
+                  Ridge National Laboratory), Dejan Milojicic (HPE Labs)</p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>Serverless computing offers HPC workflows elastic capacity, but only some tasks fit its runtime and
+                    memory limits, and finding them has required manual placement. We separate two questions that manual
+                    placement conflates: deployment-independent candidacy, which combines platform limits with
+                    task-level heuristics and is settled before execution, and deployment-dependent placement, which
+                    turns on how much workflow parallelism the local allocation absorbs. Our framework combines static
+                    DAG analysis with one bounded profiling run per task type to assign each a candidacy class, then
+                    splits candidates across local and serverless backends without per-task input. In a single-run
+                    campaign on Epigenomics, Seismology, and Cycles workflows, hybrid execution reaches the lowest
+                    observed makespan of three strategies, but the margin tracks how capacity-constrained each workflow
+                    is: 65.0% on Seismology against 4.9% and 9.0% on the others. Withholding the task types the analysis
+                    rejects lowers observed makespan a further 9.8–39.9%, and dispatch costs a median of 221
+                    microseconds.</p>
+                </details>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session plain">Panel Discussion</td>
+              <td>Multi-stakeholder panel spanning academia, industry, and national labs. Panelists TBD.</td>
+            </tr>
+            <tr>
+              <td class="sched-time">TBD</td>
+              <td class="sched-session plain">Closing</td>
+              <td>Closing remarks and wrap-up.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="tab-pane" data-tab="invited">
+      <div class="card">
+        <h2>Invited Talk</h2>
+        <p class="muted-note">Talk title to be announced.</p>
+        <h3 style="margin-top:16px;">Dr. Franck Cappello</h3>
+        <p class="speaker-title">ACM Fellow, IEEE Fellow<span class="sep"> · </span>Senior Computer Scientist / R&amp;D
+          Leader, Argonne National Laboratory</p>
+
+        <p>Cappello received his Ph.D. from the University of Paris XI in 1994 and joined CNRS, the French
+          National Center for Scientific Research; in 2003 he joined INRIA, where he holds the position of
+          permanent senior researcher. He initiated and directed the Grid'5000 project (2003–2008), a testbed
+          that has supported thousands of parallel- and distributed-computing experiments. In 2009 he became a
+          visiting research professor at the University of Illinois, where he co-founded the Joint Laboratory on
+          Petascale Computing, which later grew into the Joint Laboratory on Extreme-Scale Computing (JLESC),
+          linking seven leading supercomputing centers: NCSA, Inria, ANL, BSC, JSC, RIKEN CCS, and UTK.</p>
+
+        <p>Since 2016 he has directed two U.S. Exascale Computing Project software efforts on resilience and
+          lossy compression of scientific data. Across a 30-year research career he has led the development of
+          several widely used tools, including the MPICH-V fault-tolerant MPI library, the VeloC multilevel
+          checkpointing environment, and the SZ lossy compressor for scientific data.</p>
+
+        <p>He is a Fellow of the IEEE and, as of 2025, a Fellow of the ACM, cited "for contributions to
+          parallel/distributed computing, resilience, and scientific data reduction." He is also the recipient of
+          the 2024 IEEE CS Charles Babbage Award, the 2024 Europar Achievement Award, the 2022 HPDC Achievement
+          Award, two R&amp;D100 awards (2019 and 2021), the 2018 IEEE TCPP Outstanding Service Award, and the 2021
+          IEEE Transactions on Computers Award for Editorial Service and Excellence.</p>
+
+        <p><b>Research interests:</b></p>
+        <ul class="speaker-interests">
+          <li>High-performance parallel and distributed computing</li>
+          <li>Resilience and fault tolerance at extreme scale</li>
+          <li>Lossy compression</li>
+          <li>AI for science</li>
+        </ul>
+
+        <p class="speaker-links">
+          <a href="https://www.anl.gov/profile/franck-cappello" target="_blank" rel="noopener">Argonne profile ↗</a>
+          <span class="sep"> · </span>
+          <a href="https://franckcappello.github.io/" target="_blank" rel="noopener">Personal site ↗</a>
+          <span class="sep"> · </span>
+          <a href="https://awards.acm.org/award-recipients/cappello_5342872" target="_blank" rel="noopener">ACM Fellows
+            profile ↗</a>
+        </p>
+      </div>
+    </section>
+
     <section class="tab-pane" data-tab="cfp">
       <div class="card">
         <h2>Call for Papers</h2>
@@ -374,7 +666,10 @@
         <p>
           Submissions have <b>6-page</b> limit for short papers and <b>8-page</b> limit for regular papers, both
           excluding the
-          references. The submissions use the two-column ACM proceedings template. Papers will be reviewed by at least 3
+          references. The submissions use the two-column <b><del
+              style="color:#c9171e; text-decoration-style: double;">ACM</del> IEEE</b> proceedings template. Papers will
+          be
+          reviewed by at least 3
           reviewers in a single-blind
           process. Accepted papers will be published in the SC '26 proceedings.
         </p>
@@ -441,6 +736,7 @@
           <li><b>Daoce Wang</b> (Chair), University of Nebraska Omaha, United States</li>
           <li><b>Sheng Di</b>, Argonne National Laboratory, United States</li>
           <li><b>Liting Hu</b>, University of California Santa Cruz, United States</li>
+          <li><b>Jiajun Huang</b>, University of South Florida, United States</li>
           <li><b>Peng Jiang</b>, University of Nebraska Omaha, United States</li>
           <li><b>Qi Li</b>, University of Oklahoma, United States</li>
           <li><b>Wei-Zhen Liang</b>, University of Nebraska Lincoln, United States</li>
@@ -450,17 +746,6 @@
           <li><b>Keyang Yu</b>, Marquette University, United States</li>
           <li><b>Kai Zhao</b>, Florida State University, United States</li>
         </ul>
-      </div>
-    </section>
-
-    <section class="tab-pane" data-tab="invited">
-      <div class="card">
-        <h2>Invited Talk</h2>
-        <div class="tbd-block">
-          <div class="big">To be determined</div>
-          <p>The invited speaker and talk details will be announced ahead of the workshop. Check back closer to <b>Nov.
-              20, 2026</b>.</p>
-        </div>
       </div>
     </section>
 
@@ -584,6 +869,7 @@
         home: '#c9171e',
         cfp: '#009a00',
         organization: '#2b66d3',
+        program: '#6a3fb5',
         invited: '#1a1a1a',
         chicago: '#41b6e6'
       };
@@ -658,6 +944,16 @@
       });
       // Expose so the Tweaks panel can jump to the Chicago tab on edit.
       window.__echoSetTab = setTab;
+
+      // In-page links (e.g. the Program schedule's Invited Talk row) that jump to another tab.
+      document.querySelectorAll('[data-jump-tab]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var id = el.dataset.jumpTab;
+          setTab(id);
+          if (history.pushState) { history.pushState(null, '', '#' + id); }
+          else { location.hash = id; }
+        });
+      });
 
       window.addEventListener('hashchange', function () {
         var id = location.hash.replace('#', '');

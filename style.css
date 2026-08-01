@@ -369,6 +369,13 @@ h1 {
   box-shadow: 0 4px 14px rgba(0,0,0,0.18);
 }
 .nav .cta:active { transform: scale(0.96); }
+.nav .cta.muted {
+  background: #dcdce0;
+  border-color: #dcdce0;
+  color: #6a6a70;
+  box-shadow: none;
+}
+.nav .cta.muted:hover { filter: none; box-shadow: none; }
 
 /* ------------------------------------------------------------------
    Cards & content
@@ -424,6 +431,81 @@ ul { padding-left: 20px; }
 
 /* Small muted note used in the Chicago tab's disclaimer card */
 .muted-note { color: var(--muted); font-size: .92rem; margin: 0; }
+
+/* ------------------------------------------------------------------
+   Program tab — schedule table with folded paper abstracts
+   ------------------------------------------------------------------ */
+.schedule-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+.schedule-table td, .schedule-table th {
+  padding: 12px 10px;
+  /* box-shadow instead of border-bottom: some WebKit builds fail to paint
+     collapsed table borders on a section that's just been CSS-animated in
+     (the tab-switch fade). An inset shadow always paints. */
+  box-shadow: inset 0 -1px 0 #e4e4e4;
+  vertical-align: top;
+  text-align: left;
+}
+.schedule-table th { font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.schedule-table tr:last-child td { box-shadow: none; }
+.sched-time {
+  white-space: nowrap;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  width: 4.5em;
+}
+.sched-session {
+  white-space: nowrap;
+  font-weight: 700;
+  width: 11.5em;
+}
+.sched-session.plain { font-weight: 400; color: var(--muted); }
+
+.paper-title { margin: 0 0 4px; font-weight: 700; }
+.paper-type {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #f1f1f3;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  vertical-align: middle;
+}
+.paper-authors { margin: 0 0 6px; color: var(--muted); font-size: .95rem; }
+
+details.abstract summary {
+  cursor: pointer;
+  color: var(--echo-theme);
+  font-size: .88rem;
+  font-weight: 600;
+  transition: color 280ms ease;
+  list-style: none;
+}
+details.abstract summary::-webkit-details-marker { display: none; }
+details.abstract summary::marker { content: ''; }
+details.abstract summary::before { content: '▸ '; }
+details.abstract[open] summary::before { content: '▾ '; }
+details.abstract p { margin: 8px 0 0; font-size: .92rem; }
+
+.linklike {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--echo-theme);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 280ms ease;
+}
+
+/* Invited-speaker profile on the Invited Talk tab */
+.speaker-title { color: var(--muted); font-style: italic; margin: 2px 0 14px; }
+.speaker-interests { margin: 6px 0 0; padding-left: 20px; }
+.speaker-links { margin: 12px 0 0; font-size: .92rem; }
 
 /* ------------------------------------------------------------------
    Modal — submission portal instructions
