@@ -451,7 +451,7 @@ ul { padding-left: 20px; }
   white-space: nowrap;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
-  width: 4.5em;
+  width: 8em;
 }
 .sched-session {
   white-space: nowrap;
@@ -649,3 +649,8 @@ body.chicago-active .footer .photo-credit a {
   padding: 6px 4px; border-radius: 7px; cursor: pointer; font: inherit; font-size: 12px;
 }
 .echo-tweaks .seg button.sel { background: #41b6e6; color: #06222e; font-weight: 700; }
+
+@media (max-width: 640px) {
+  .sched-time { width: 6.5em; font-size: .85rem; }
+  .sched-session { width: 5.5em; white-space: normal; }
+}
